@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/storeContext";
-import axios from "axios";
 import { assets } from "../assets/assets";
 
 const MyOrders = () => {
   const [data, setData] = useState([]);
-  const { url, login } = useContext(StoreContext);
+  const { url, login,axios} = useContext(StoreContext);
 
   const fetchOrders = async () => {
     const response = await axios.post(url + "/api/order/userorders", {});

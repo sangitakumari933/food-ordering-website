@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
-import axios from "axios";
 import { useContext } from "react";
 import { StoreContext } from "../context/storeContext";
 
@@ -8,7 +7,7 @@ const LoginPopup = ({ setShowLogin }) => {
   const [currState, setCurrState] = useState("Sign Up");
   axios.defaults.withCredentials = true;
 
-  const {setLogin} = useContext(StoreContext);
+  const {setLogin,axios} = useContext(StoreContext);
   
   const [data, setData] = useState({
     name: "",
@@ -24,11 +23,10 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-    let url = "http://localhost:4000"
     if(currState==="Login") {
-      url += "/api/user/login"
+      url = "api/user/login"
     }else{
-      url += "/api/user/register";
+      url = "api/user/register";
     }
 
     const response = await axios.post(url, data);

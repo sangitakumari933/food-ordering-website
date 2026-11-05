@@ -1,20 +1,26 @@
 import cloudinary from "../config/cloudinary.js";
 import Food from "../models/Food.js";
-import fs from "fs";
+
 
 const addFood = async (req, res) => {
   try {
-    console.log("reached addFood")
-  const result = await cloudinary.uploader.upload(req.file.path);
-  console.log("dead")
-  fs.unlinkSync(req.file.path);
-  const food = new Food({
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    category: req.body.category,
-    image: result.secure_url,
-  });
+    console.log("reached addFood");
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ resource_type: "image" }, (error, result) => {
+          if (error) return reject(error);
+
+          resolve(result.secure_url);
+        })
+        .end(req.file.buffer);
+    });
+    const food = new Food({
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      category: req.body.category,
+      image: result.secure_url,
+    });
     await food.save();
     res.json({ success: true, message: "Food Added" });
   } catch (error) {
@@ -28,12 +34,12 @@ const addFood = async (req, res) => {
 const foodList = async (req, res) => {
   try {
     const foods = await Food.find({});
-    res.json({success:true, data:foods});
+    res.json({ success: true, data: foods });
   } catch (error) {
     console.log(error);
-    res.json({success:false, message:"Error"});
+    res.json({ success: false, message: "Error" });
   }
-}
+};
 
 //remove food item
 const removeFood = async (req, res) => {
@@ -42,7 +48,7 @@ const removeFood = async (req, res) => {
     if (food.image) {
       await cloudinary.uploader.destroy(food.image);
     }
-     
+
     await Food.findByIdAndDelete(req.body.id);
 
     res.json({
@@ -50,13 +56,13 @@ const removeFood = async (req, res) => {
       message: "Food removed successfully",
     });
   } catch (error) {
-     console.log(error);
+    console.log(error);
 
     res.status(500).json({
       success: false,
       message: "Error",
     });
   }
-}
+};
 
-export { addFood, foodList, removeFood};
+export { addFood, foodList, removeFood };

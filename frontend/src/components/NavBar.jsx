@@ -7,7 +7,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { StoreContext } from "../context/storeContext";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 
 const NavBar = ({ setShowLogin }) => {
@@ -15,16 +14,14 @@ const NavBar = ({ setShowLogin }) => {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const { login, setLogin } = useContext(StoreContext);
-  const {getTotalCartAmount} = useContext(StoreContext);
+  const {getTotalCartAmount,axios} = useContext(StoreContext);
   const location = useLocation();
   const navigate = useNavigate();
 
   const logout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/user/logout",
-        {},
-        { withCredentials: true },
+        "api/user/logout"
       );
 
       if (response.data.success) {

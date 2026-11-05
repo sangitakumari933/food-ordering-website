@@ -4,10 +4,10 @@ import { assets } from "../assets/assets";
 
 const MyOrders = () => {
   const [data, setData] = useState([]);
-  const { url, login,axios} = useContext(StoreContext);
+  const {login,axios} = useContext(StoreContext);
 
   const fetchOrders = async () => {
-    const response = await axios.post(url + "/api/order/userorders", {});
+    const response = await axios.post("api/order/userorders");
     setData(response.data.data);
     console.log(response.data.data);
   };

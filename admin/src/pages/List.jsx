@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'; 
 import { toast } from 'react-toastify';
-import axios from 'axios';
 
-const List = ({url}) => {
+const List = ({axios}) => {
 
   const [list, setList] = useState([]);
 
   const fetchList = async ()=>{
     console.log("fetching list")
-    const response = await axios.get(`${url}/api/food/get-food`);
+    console.log(axios.defaults.baseURL);
+    const response = await axios.get("/api/food/get-food");
     console.log(response.data)
     if(response.data.success){
       setList(response.data.data);
@@ -19,7 +19,7 @@ const List = ({url}) => {
 
   const removeFood = async(foodId)=>{
     console.log(foodId);
-    const response = await axios.post(`${url}/api/food/remove`, {id:foodId});
+    const response = await axios.post("/api/food/remove", {id:foodId});
     await fetchList();
     if (response.data.success){
       toast.success(response.data.message)

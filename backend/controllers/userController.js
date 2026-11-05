@@ -92,7 +92,7 @@ const registeredUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
   try {
-    res.clearCookie("token", {{
+    res.clearCookie("token", {
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,

@@ -1,5 +1,5 @@
-import express from "express"
-import cors from "cors"
+import express from "express";
+import cors from "cors";
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
 import dotenv from "dotenv";
@@ -10,21 +10,26 @@ import orderRouter from "./routes/orderRoute.js";
 
 //app config
 const app = express();
-const port = 4000
+const port = 4000;
 dotenv.config();
 
 //middleware
-app.use(express.json())
-app.use(cors({
-    origin: ["http://localhost:5174","https://food-ordering-website-5mdq.vercel.app"],
-    credentials: true
-}));
+app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5174",
+      "https://food-ordering-website-5mdq.vercel.app",
+    ],
+    credentials: true,
+  }),
+);
 
 app.use(cookieParser());
 
-app.get("/", (req, res)=>{
-  res.send("API Working")
-})
+app.get("/", (req, res) => {
+  res.send("API Working");
+});
 
 //db connection
 connectDB();
@@ -35,8 +40,8 @@ app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
-app.listen(port, ()=>{
+app.listen(port, () => {
   console.log(`listenning the server on ${port} `);
-})
+});
 
 //export default app;

@@ -16,7 +16,7 @@ dotenv.config();
 //middleware
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:5174","https://food-ordering-website-5mdq.vercel.app/"],
+    origin: ["http://localhost:5174","https://food-ordering-website-5mdq.vercel.app"],
     credentials: true
 }));
 

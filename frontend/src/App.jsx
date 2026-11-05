@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -26,6 +27,7 @@ function App() {
   return (
     <div className="relative">
       <ToastContainer />
+       <ScrollToTop />
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="w-[90%] mx-auto">
         <NavBar setShowLogin={setShowLogin}></NavBar>

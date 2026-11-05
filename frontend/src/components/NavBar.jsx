@@ -123,45 +123,69 @@ const NavBar = ({ setShowLogin }) => {
       </div>
       {/* for phone screen */}
       <div className="flex md:hidden items-center justify-between px-3 py-4">
-        <button onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? "✕" : "☰"}
-        </button>
 
         <img src={assets.logo} className="w-32" />
 
-        <div className="flex items-center gap-3">
-          <LuShoppingCart size={20} />
-          <button
-            onClick={() => setShowLogin(true)}
-            className="bg-orange-500 px-4 py-1.5 rounded-lg text-white"
-          >
-            Sign In
-          </button>
+        <div className="flex items-center gap-6">
+          <LuShoppingCart size={25} />
+          {!login ? (
+            <button
+              onClick={() => setShowLogin(true)}
+              className="bg-orange-500 px-4 py-1.5 rounded-lg text-white"
+            >
+              Sign in
+            </button>
+          ) : (
+            <><div className="relative group">
+            <img className="w-6" src={assets.profile_icon} alt="" />
+            <ul className="w-36 absolute hidden group-hover:flex flex-col bg-white right-0 z-10 px-3 py-5 rounded-md border-2 border-orange-400/40">
+              <li onClick={()=> navigate("/myorders")} className="flex items-center gap-3 cursor-pointer">
+                <img
+                  className="w-5 cursor-pointer"
+                  src={assets.bag_icon}
+                  alt=""
+                />{" "}
+                <p className="hover:text-orange-400 text-gray-700">Orders</p>
+              </li>
+              <hr className="my-2" />
+              <li
+                onClick={() => logout()}
+                className="flex items-center gap-3 cursor-pointer"
+              >
+                <img
+                  className="w-5 cursor-pointer"
+                  src={assets.logout_icon}
+                  alt=""
+                />{" "}
+                <p className="hover:text-orange-400 text-gray-700">Logout</p>
+              </li>
+            </ul>
+          </div></>
+          )}
         </div>
       </div>
       {menuOpen && (
         <div className="absolute top-8 left-2  md:hidden bg-white shadow-lg px-5 py-4 flex flex-col gap-4 font-medium text-gray-600 rounded-md border-2 border-orange-400/30">
-          <button
+          <Link to="/"
             onClick={() => {
-              scrollToSection("home");
               setActive("home");
               setMenuOpen(false);
             }}
             className="text-left"
           >
             Home
-          </button>
+          </Link>
 
-          <button
+          <a
+              href="/#menu"
             onClick={() => {
-              scrollToSection("menu");
               setActive("menu");
               setMenuOpen(false);
             }}
             className="text-left"
           >
             Browse Menu
-          </button>
+          </a>
 
           <button
             onClick={() => {
@@ -173,16 +197,15 @@ const NavBar = ({ setShowLogin }) => {
             About Us
           </button>
 
-          <button
+          <a href="#footer"
             onClick={() => {
-              scrollToSection("footer");
               setActive("contact_us");
               setMenuOpen(false);
             }}
             className="text-left"
           >
             Contact Us
-          </button>
+          </a>
         </div>
       )}
     </div>

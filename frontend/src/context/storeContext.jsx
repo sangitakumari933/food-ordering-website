@@ -84,7 +84,6 @@ const StoreContextProvider = (props) => {
     setLogin,
     getTotalCartAmount,
     axios,
-    url,
   };
 
   return (

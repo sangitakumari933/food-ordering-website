@@ -5,7 +5,7 @@ import { StoreContext } from "../context/storeContext";
 
 const LoginPopup = ({ setShowLogin }) => {
   const [currState, setCurrState] = useState("Sign Up");
-  axios.defaults.withCredentials = true;
+
 
   const {setLogin,axios} = useContext(StoreContext);
   
@@ -23,6 +23,7 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
+    let url="";
     if(currState==="Login") {
       url = "api/user/login"
     }else{

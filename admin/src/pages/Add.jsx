@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
-const Add = ({axios}) => {
-  
-
+const Add = ({ axios }) => {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -33,7 +31,6 @@ const Add = ({axios}) => {
 
     const response = await axios.post(`/api/food/add`, formData);
 
-
     if (response.data.success) {
       console.log("success");
       setData({
@@ -45,8 +42,8 @@ const Add = ({axios}) => {
       setImage(false);
       toast.success(response.data.message);
     } else {
-      console.log(response)
-      toast.error(response.data.message)
+      console.log(response);
+      toast.error(response.data.message);
     }
   };
 
@@ -83,7 +80,8 @@ const Add = ({axios}) => {
         </div>
         <div>
           <p>Product description</p>
-          <textarea onChange={onChangeHandler}
+          <textarea
+            onChange={onChangeHandler}
             className="w-[50%] max-md:w-full border-2 outline-none border-gray-400 rounded-sm p-2.5"
             name="description"
             value={data.description}
@@ -94,7 +92,8 @@ const Add = ({axios}) => {
         <div className="flex gap-5">
           <div>
             <p>Product category</p>
-            <select onChange={onChangeHandler}
+            <select
+              onChange={onChangeHandler}
               className="max-w-30 border-2 p-2.5 border-gray-400 rounded-sm"
               name="category"
             >
@@ -110,11 +109,14 @@ const Add = ({axios}) => {
           </div>
           <div>
             <p>Product price</p>
-            <input onChange={onChangeHandler}
+            <input
+              onChange={onChangeHandler}
+              value={data.price}
               className="max-w-30 border-2 p-2.5 outline-none border-gray-400 rounded-sm"
-              type="Numver"
+              type="number"
               name="price"
-              placeholder="$20"
+              placeholder="20"
+              required
             />
           </div>
         </div>

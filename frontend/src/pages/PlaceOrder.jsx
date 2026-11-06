@@ -65,7 +65,7 @@ const PlaceOrder = () => {
 
   return (
     
-      <form onSubmit={placeOrder} className='flex items-start justify-between gap-48 mt-25'>
+      <form onSubmit={placeOrder} className='flex items-start justify-between gap-48 mt-25 max-[800px]:flex-col max-[800px]:gap-24'>
         <div className='flex-1'>
           <p className='text-2xl font-semibold mb-8'>Delivery Information</p>
           <div className='flex gap-2 w-full'>
@@ -84,7 +84,7 @@ const PlaceOrder = () => {
           </div>
           <input required name='phone' onChange={onChangeHandler} value={data.phone} className='mb-4 border border-gray-300 p-2.5 rounded-md w-full' type="text" placeholder='Phone' />
         </div>
-        <div className='flex flex-col gap-5 flex-1'>
+        <div className='flex flex-col gap-5 flex-1 max-[800px]:w-[70%]'>
           <h2 className='text-xl font-bold'>Cart Totals</h2>
           <div>
             <div className='flex justify-between text-gray-800 py-2 border-b border-gray-400 '>
@@ -100,7 +100,7 @@ const PlaceOrder = () => {
               <p>₹{getTotalCartAmount()+50}</p>
             </div>
           </div>
-          <button type='submit' onClick={()=>navigate('/order')} className='bg-orange-500/90 py-2 px-1 rounded-md text-white w-1/2 mt-10 '>PROCEED TO PAYMENT</button>
+          <button type='submit' onClick={()=>navigate('/order')} className='bg-orange-500/90 py-2 px-1 rounded-md text-white w-1/2 mt-10 max-sm:w-full'>PROCEED TO PAYMENT</button>
         </div>
 
       </form>

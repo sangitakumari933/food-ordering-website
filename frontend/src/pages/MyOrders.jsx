@@ -35,10 +35,10 @@ const MyOrders = () => {
                   }
                 })}
               </p>
-              <p>{order.amount}.00</p>
+              <p>₹{order.amount}.00</p>
               <p>Items:{order.items.length}</p>
               <p>
-                <span className="text-orange-400">&#x25cf; <b className="text-gray-600">{order.status}</b>
+                <span className="text-orange-400 max-sm:text-sm">&#x25cf; <b className="text-gray-600">{order.status}</b>
                 </span>
               </p>
               <button className="px-3 py-2 rounded-md bg-[#ffe1e1] font-medium text-gray-600">Track Order</button>

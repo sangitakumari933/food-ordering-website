@@ -17,6 +17,18 @@ const Orders = ({ axios }) => {
       toast.error("Error");
     }
   };
+  
+  const statusHandler = async (event, orderId)=>{
+    console.log("called");
+    const response = await axios.post("/api/order/status", {
+      orderId,
+      status:event.target.value
+    })
+    if(response.data.success){
+      await fetchAllOrders();
+      console.log("success");
+    }
+  }
 
   useEffect(() => {
     fetchAllOrders();
@@ -47,8 +59,8 @@ const Orders = ({ axios }) => {
               <p>{order.address.phone}</p>
             </div>
             <p>Items : {order.items.length}</p>
-            <p>${order.amount}</p>
-            <select name="" id="" className="border-2 border-orange-200 bg-[#ffe8e4] p-2 outline-none">
+            <p>₹{order.amount}</p>
+            <select onChange={(e)=>statusHandler(e, order._id)} value={order.status} className="border-2 border-orange-200 bg-[#ffe8e4] p-2 outline-none">
               <option value="Food Processing">Food Processing</option>
               <option value="Out for Delivery">Out for delivery</option>
               <option value="Delivered">Delivered</option>

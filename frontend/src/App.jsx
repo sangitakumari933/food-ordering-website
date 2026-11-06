@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
 import ScrollToTop from "./components/ScrollToTop";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -37,7 +38,7 @@ function App() {
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify/>}/>
           <Route path="/myorders" element={<MyOrders/>}/>
-          <Route />
+          <Route path="/about-us" element={<AboutUs/>}/>
         </Routes>
       </div>
       <Footer />

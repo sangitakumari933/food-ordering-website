@@ -7,7 +7,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='m-25 max-md:m-5 max-sm:m-0'>
+    <div className='mt-28 mx-5 md:mx-10 lg:mx-20 max-sm:mt-24 max-sm:mx-2'>
       <div className=''>
         <div className="grid grid-cols-[1fr_1.3fr_1fr_1fr_1fr_0.5fr]">
           <p className='text-lg text-gray-800 max-md:text-sm'>items</p>

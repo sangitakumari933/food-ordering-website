@@ -18,8 +18,10 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://localhost:5174","http://localhost:5175",
-      "https://food-ordering-website-5mdq.vercel.app","https://food-ordering-website-ayop.vercel.app"
+      "http://localhost:5174",
+      "http://localhost:5175",
+      "https://food-ordering-website-5mdq.vercel.app",
+      "https://food-ordering-website-ayop.vercel.app",
     ],
     credentials: true,
   }),
@@ -32,7 +34,22 @@ app.get("/", (req, res) => {
 });
 
 //db connection
-connectDB();
+
+const startServer = async () => {
+  try {
+    await connectDB();
+
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  } catch (error) {
+    console.error("Server startup failed:", error);
+    process.exit(1);
+  }
+};
+
+//connect to mongoDb
+startServer();
 
 //api endpoints
 app.use("/api/food", foodRouter);

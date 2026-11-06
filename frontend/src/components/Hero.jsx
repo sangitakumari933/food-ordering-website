@@ -23,16 +23,6 @@ const Hero = () => {
         <p className="text-xl py-5 w-[90%]">
           Order your favorite food: fast, fresh, and delivered to your door.
         </p>
-        <div className="flex py-2 w-[90%] gap-1 items-center justify-center">
-          <input
-            type="text"
-            placeholder="Search for food, cuisine..."
-            className="underline-none border border-gray-200 px-6 py-3 flex-1 rounded-xl"
-          />
-          <button className="px-6 py-2 bg-orange-500 rounded-xl text-white text-xl">
-            Search
-          </button>
-        </div>
         <div className="w-[90%] flex items-center justify-center pt-8 gap-2">
           <button className="flex gap-1 border border-gray-200 px-3 py-1 max-md:p-1  rounded-xl">
             <TbTruckDelivery size={30} className="text-orange-500" />

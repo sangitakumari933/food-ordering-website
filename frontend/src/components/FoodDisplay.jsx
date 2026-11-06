@@ -8,10 +8,10 @@ const FoodDisplay = ({category}) => {
     <div className=''>
       <h2 className='text-3xl font-semibold my-10'>Explore Dishes</h2>
       <div className='grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-x-7 gap-y-9'>
-        {food_list.map((item, index)=>{
+        {food_list?.map((item, index)=>{
           console.log(category)
           if(category === 'All' || category === item.category){
-            return <FoodItem key={index} id={item._id} name={item.name} price = {item?.price}description={item.description} image={item.image}/>
+            return <FoodItem key={index} id={item?._id} name={item?.name} price = {item?.price}description={item?.description} image={item?.image}/>
           }          
         })}
       </div>

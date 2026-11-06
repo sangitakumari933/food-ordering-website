@@ -23,6 +23,7 @@ app.use(
       "https://food-ordering-website-5mdq.vercel.app",
       "https://food-ordering-website-ayop.vercel.app",
     ],
+    credentials:true
   }),
 );
 

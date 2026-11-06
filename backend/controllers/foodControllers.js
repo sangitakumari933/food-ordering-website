@@ -4,16 +4,28 @@ import Food from "../models/Food.js";
 
 const addFood = async (req, res) => {
   try {
-    console.log("reached addFood");
+    console.log("Reached addFood");
+
+    console.log("REQ FILE:", req.file);
+    console.log("REQ BODY:", req.body);
+
     const result = await new Promise((resolve, reject) => {
       cloudinary.uploader
-        .upload_stream({ resource_type: "image" }, (error, result) => {
-          if (error) return reject(error);
+        .upload_stream(
+          { resource_type: "image" },
+          (error, result) => {
+            if (error) return reject(error);
 
-          resolve(result.secure_url);
-        })
+            console.log("CLOUDINARY RESULT:", result);
+
+            resolve(result.secure_url);
+          }
+        )
         .end(req.file.buffer);
     });
+
+    console.log("IMAGE URL:", result);
+
     const food = new Food({
       name: req.body.name,
       description: req.body.description,
@@ -21,20 +33,22 @@ const addFood = async (req, res) => {
       category: req.body.category,
       image: result
     });
+
+    console.log("FOOD BEFORE SAVE:", food);
+
     await food.save();
+
     res.json({ success: true, message: "Food Added" });
+
   } catch (error) {
     console.error("ADD FOOD ERROR:", error);
 
     res.status(500).json({
-        success: false,
-        message: error.message,
-        stack: error.stack
+      success: false,
+      message: error.message
     });
   }
-  console.log("success");
 };
-
 // all food list
 const foodList = async (req, res) => {
   try {

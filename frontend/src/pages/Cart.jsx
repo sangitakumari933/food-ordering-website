@@ -26,9 +26,9 @@ const Cart = () => {
                 <div className='grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] my-2.5 gap-1'>
                 <img className = "w-14 max-md:w-10"src={item.image} alt="" />
                 <p className='max-md:text-sm text-black'>{item.name}</p>
-                <p className='max-md:text-sm'>${item.price}</p>
+                <p className='max-md:text-sm'>₹{item.price}</p>
                 <p className='max-md:text-sm'>{cartItems[item._id]}</p>
-                <p className='max-md:text-sm'>${item.price * cartItems[item._id]}</p>
+                <p className='max-md:text-sm'>₹{item.price * cartItems[item._id]}</p>
                 <p onClick={()=>removeFromCart(item._id)} className='cursor-pointer md:text-xl'>x</p>
               </div>
               <hr className='h-px text-gray-300' />

@@ -44,6 +44,20 @@ const LoginPopup = ({ setShowLogin }) => {
 
 
 
+  const demoLogin= async ()=>{
+    const response = await axios.post("api/user/login", {email:"demo@gmail.com", password:"demo12"});
+    if(response.data.success){
+      console.log("success")
+      setShowLogin(false)
+      setLogin(true);
+    }else{
+      alert(response.data.message);
+    }
+
+  }
+
+
+
   return (
     <div className="fixed inset-0 z-100 flex h-screen w-full items-center justify-center bg-[#00000090]">
       <form onSubmit={onLogin}
@@ -95,6 +109,13 @@ const LoginPopup = ({ setShowLogin }) => {
         <button type="submit" className="bg-orange-500/80 p-2 rounded-md text-white text-lg">
           {currState === "Sign Up" ? "Create account" : "Login"}
         </button>
+        <button
+            type="button"
+            onClick={demoLogin}
+            className="w-full py-2.5 rounded-full border border-gray-400 text-gray-700 font-medium hover:bg-gray-100 transition-all duration-200"
+          >
+            Continue as Guest
+          </button>
         {currState === "Login" ? (
           <p className="text-gray-600">
             Create a new account?{" "}

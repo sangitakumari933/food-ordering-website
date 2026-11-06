@@ -162,6 +162,7 @@ const NavBar = ({ setShowLogin }) => {
             </ul>
           </div></>
           )}
+          <div onClick = {()=>setMenuOpen(true)} className="text-xl cursor-pointer">☰</div>
         </div>
       </div>
       {menuOpen && (

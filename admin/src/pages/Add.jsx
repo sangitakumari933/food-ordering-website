@@ -42,6 +42,7 @@ const Add = ({axios}) => {
       setImage(false);
       toast.success(response.data.message);
     } else {
+      console.log(response.data)
       toast.error(response.data.message)
     }
   };

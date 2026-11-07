@@ -123,7 +123,7 @@ JWT_SECRET = sangitasony123456
 STRIPE_SECRET_KEY =sk_test_51UWTKFP6pXpFoKvrDX6eBiiKxI6wLGxabUL0XVRmYY3TlmkAVXyzsc3vGVgZJpG4INT1rgzgtTz6K9zuq0RM5XrE005wh0tHwu
 ```
 
-Create a `.env` file in the frontend and admin directories if required:
+Create a `.env` file in the frontend and admin directories.
 
 ```env
 VITE_BACKEND_URL=http://localhost:4000
